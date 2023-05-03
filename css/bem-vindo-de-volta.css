@@ -1,0 +1,91 @@
+* {
+    margin:0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url("../img/index/deliciosos-croquetes-de-comida-em-uma-tigela.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255,255,255,0.4);
+    backdrop-filter: blur(2px);
+    padding: 30px;
+    border-radius: 30px;
+}
+
+#content h2 {
+    text-align: center;
+}
+
+.input_box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+    margin-top: 20px;
+}
+
+.input_box input {
+    display: inline-block;
+    padding: 18px;
+    border-radius: 40px;
+    box-shadow: 1px 1px 6px 1px #3f3f3f;
+    border: none;
+    transition: 0.2s;
+}
+
+.input_box input:hover {
+    background-color: #eeeeeecb;
+}
+
+.input_box input:focus-visible {
+    outline: 2px solid #525252;
+}
+
+.input_box label {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1e1e1e;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.input_box input::placeholder {
+    color: #000000be;
+}
+
+#link {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#cadastre {
+    color: #1e1e1e;
+}
+
+#continue {
+    padding: 18px;
+    width: 100%;
+    border-radius: 40px;
+    border: none;
+    box-shadow: 1px 1px 6px 1px #3f3f3f;
+    cursor: pointer;
+    background: #c3c3c3;
+    transition: 0.2s;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+#continue:hover {
+    background: #a1a1a1;
+}

@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url("../img/index/deliciosos-croquetes-de-comida-em-uma-tigela.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    overflow-y: scroll;
+    width: 265px;
+    background: rgba(255,255,255,0.4);
+    backdrop-filter: blur(2px);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+#content::-webkit-scrollbar {
+    width: 0;
+}
+
+#content h2 {
+    text-align: center;
+}
+
+.input_box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+    margin-top: 20px;
+}
+
+.input_box input {
+    display: inline-block;
+    width: 205px;
+    padding: 18px;
+    border-radius: 40px;
+    box-shadow: 1px 1px 6px 1px #3f3f3f;
+    border: none;
+    transition: 0.2s;
+}
+
+.input_box input:hover {
+    background-color: #eeeeeecb;
+}
+
+.input_box input:focus-visible {
+    outline: 2px solid #242424;
+}
+
+.input_box label {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1e1e1e;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.input_box input::placeholder {
+    color: #000000be;
+}
+
+.input_box select {
+    border-radius: 40px;
+    padding: 15px;
+    border: none;
+    box-shadow: 1px 1px 6px 1px #3f3f3f;
+    width: 205px;
+}
+
+.input_box select:hover {
+    background-color: #eeeeeecb;
+}
+
+.input_box select:focus-visible {
+    outline: 2px solid #242424;
+}
+
+#adress::placeholder {
+    font-size: 10px;
+}
+
+#button {
+    width: 100%;
+}
+
+#btn {
+    padding: 18px;
+    width: 100%;
+    border-radius: 40px;
+    border: none;
+    box-shadow: 1px 1px 6px 1px #3f3f3f;
+    cursor: pointer;
+    background: #c3c3c3;
+    transition: 0.2s;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+#btn:hover {
+    background: #a1a1a1;
+}
+
+.text_style {
+    margin-top: 5px;
+    color: rgb(195, 21, 21);
+    align-items: center;
+}

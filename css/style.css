@@ -14,8 +14,9 @@ header {
 }
 
 #mini_logo {
-    width: 60px;
+    width: 90px;
     margin-left: 30px;
+    border-radius: 20px;
 }
 
 #nav {
@@ -112,6 +113,7 @@ main {
     height: 90.5vh;
     display: flex;
     align-items: center;
+    background-attachment: fixed;
 }
 
 .button {

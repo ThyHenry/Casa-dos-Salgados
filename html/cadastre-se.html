@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/cadastre-se.css">
+    <title>Cadastre-se</title>
+</head>
+<body>
+    <div id="content">
+        <h2>Bem vindo</h2>
+
+        <form autocomplete="off">
+        <div class="input_box">
+            <label for="completename">Nome</label>
+            <input id="completename" type="text" name="completename" placeholder="Digite seu nome completo" required>
+        </div>
+
+        <div class="input_box">
+            <label for="email">E-mail</label>
+            <input id="email" type="email" name="email" placeholder="Digite seu e-mail" required>
+            <small id="textEmail" class="text_style"></small>
+        </div>
+
+        <div class="input_box">
+            <label for="password">Senha</label>
+            <input id="password" type="password" name="password" placeholder="Digite sua senha" required>
+            <small id="textPassword" class="text_style"></small>
+        </div>
+
+        <small id="textForm"></small>
+
+        <div id="button">
+            <button id="btn" type="submit">Entrar</button>
+        </div>
+        </form>
+    </div>
+
+    <script src="../js/cadastre-se.js"></script>
+</body>
+</html>
