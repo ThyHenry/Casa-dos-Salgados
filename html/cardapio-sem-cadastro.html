@@ -9,18 +9,17 @@
 </head>
 <body>
     <header>
-        <a href="../index.html"><img src="../img/WhatsApp Image 2023-04-14 at 13.09.47.jpeg" id="nav_logo"></a>
+        <a href="../index.html"><img src="../img/WhatsApp Image 2023-04-14 at 13.09.47.jpeg" class="nav_logo"></a>
+        <a href="../index.html"><img src="../img/WhatsApp_Image_2023-04-03_at_14.40.56-removebg-preview.png" class="nav_logo"></a>
         <img src="../img/Menu/hamburger.png" id="hamburguer">
 
         <div id="nav">
             <ul id="menu">
-               <a href="#porcoes_individuais" class="link"><li class="anchor">Porções Individuais</li> </a>
-               <a href="#pizza_brotinho" class="link"><li class="anchor">Pizza Brotinho</li></a>
-               <a href="#salgados_mistos" class="link"> <li class="anchor">Salgados Mistos</li></a>
-               <a href="#combos" class="link"> <li class="anchor">Combos</li></a>
-               <a href="#porcao_fritas" class="link"> <li class="anchor">Porção de Fritas</li></a>
-               <a href="#bebidas" class="link"> <li class="anchor">Bebidas</li></a>
-               <a href="#lanches" class="link"> <li class="anchor">Lanches</li></a>
+               <a href="#porcoes_individuais" class="link" id="porcoes_individuais_display"><li class="anchor">Porções Individuais</li> </a>
+               <a href="#pizza_brotinho" class="link" id="pizza_brotinho_display"><li class="anchor">Pizza Brotinho</li></a>
+               <a href="#salgados_mistos" class="link" id="salgados_mistos_display"> <li class="anchor">Salgados Mistos</li></a>
+               <a href="#combos" class="link" id="com_bos"> <li class="anchor">Combos</li></a>
+               <a href="#bebidas" class="link" id="bebi_das"> <li class="anchor">Bebidas</li></a>
             </ul>
         </div>
 
@@ -33,13 +32,11 @@
             <img src="../img/Menu/x.png" id="close">
 
             <ul id="menu_hide">
-               <a href="#porcoes_individuais" class="link"><li class="anchor_hide">Porções Individuais</li> </a>
-               <a href="#pizza_brotinho" class="link"><li class="anchor_hide">Pizza Brotinho</li></a>
-               <a href="#salgados_mistos" class="link"> <li class="anchor_hide">Salgados Mistos</li></a>
-               <a href="#combos" class="link"> <li class="anchor_hide">Combos</li></a>
-               <a href="#porcao_fritas" class="link"> <li class="anchor_hide">Porção de Fritas</li></a>
-               <a href="#bebidas" class="link"> <li class="anchor_hide">Bebidas</li></a>
-               <a href="#lanches" class="link"> <li class="anchor_hide">Lanches</li></a>
+               <a href="#porcoes_individuais" class="link" id="porcoes_individuais_hide"><li class="anchor_hide">Porções Individuais</li> </a>
+               <a href="#pizza_brotinho" class="link" id="pizza_brotinho_hide"><li class="anchor_hide">Pizza Brotinho</li></a>
+               <a href="#salgados_mistos" class="link" id="salgados_mistos_hide"> <li class="anchor_hide">Salgados Mistos</li></a>
+               <a href="#combos" class="link" id="com_bos_hide"> <li class="anchor_hide">Combos</li></a>
+               <a href="#bebidas" class="link" id="bebi_das_hide"> <li class="anchor_hide">Bebidas</li></a>
             </ul>
         </div>
 
@@ -53,7 +50,7 @@
             <div id="upside">
         <div id="picture">
             <img src="../img/Porções Individuais/1591520220609074019vusjgFpob.jpeg" id="img">
-        </div>
+       </div>
         <div id="product_information">
             <h2 id="name">Coxinha de frango</h2>
             <p id="food_info">Pão, hambúrguer, frango, calabresa, Bacon, alface, tomate, milho e ervilha</p>
@@ -77,7 +74,7 @@
                     </div>
                 </div>
 
-                <a href="" id="next"><div id="continue">
+                <a href="" id="addCart"><div id="continue">
                     <h2>Adicionar no carrinho</h2>
                 </div></a>
                 </div>
@@ -101,11 +98,24 @@
 
     <div class="cartProduct">
         <div class="cart_info">
+            <h2 class="cart_name_product"></h2>
         <h2 class="quantity_cart"></h2>
-        <h2 class="cart_name_product"></h2>
+        
+        </div>
+        <div class="button_quantity_price">
+            <h2 class="cart_price_product"></h2>
+            <!-- <div class="add_remove_quantity_cart">
+                <div  class="remove_quantity">
+                    <h1>-</h1>
+                </div>
+                <div class="divisor"></div>
+                <div class="add_quantity">
+                    <h1>+</h1>
+                </div>
+            </div> -->
         </div>
         <div class="cart_input_value">
-
+            <p class="input_value"></p>
         </div>
     </div>
 
@@ -115,12 +125,32 @@
 
         <div id="shoppingCart">
 
-        
+            <div id="cartContent">
+            
+
+            </div>
+
+            <div id="amount">
+                <div id="content_total">
+                <h2 id="text_total">Total</h2>
+                <hr>
+                <h3 id="total">R$00,00</h3>
+                <hr>
+                </div>
+
+                <div id="conclude">
+                    <button id="button_conclude">Finalizar a compra</button>
+                </div>
+            </div>
+
         </div>
 
         <div id="pattern">
-            <div id="frame">
-                <img src="../img/WhatsApp Image 2023-04-14 at 13.09.47.jpeg" id="logo">
+            <div class="frame">
+                <img src="../img/WhatsApp Image 2023-04-14 at 13.09.47.jpeg" class="logo">
+            </div>
+            <div class="frame">
+                <img src="../img/WhatsApp_Image_2023-04-03_at_14.40.56-removebg-preview.png" class="logo">
             </div>
         </div>
 
@@ -180,18 +210,6 @@
 
     </div>
 
-        <!-- porção de fritas -->
-
-    <div id="porcao_fritas" >
-            <h2 class="title">Porção de Fritas</h2>
-
-        <div class="layout" id="frenchFries">
-
-         
-        </div>
-
-    </div>
-
         <!-- bebidas -->
 
     <div id="bebidas" >
@@ -205,22 +223,9 @@
 
     </div>
 
-        <!-- lanches -->
-
-    <div id="lanches" >
-            <h2 class="title">Lanches</h2>
-
-        <div class="layout" id="sandwich">
-
-           
-
         </div>
 
-        <div id="cart">
-            <div id="molding">
-                <img src="../img/carrinho-de-compras-de-design-xadrez.png" id="bought">
-            </div>
-        </div>
+       
 
         <footer id="credit" >
             <h5>Créditos</h5>
@@ -233,6 +238,12 @@
 
     </div>
     </main>
+
+    <div id="cart">
+        <div id="molding">
+            <img src="../img/carrinho-de-compras-de-design-xadrez.png" id="bought">
+        </div>
+    </div>
 
     <script src="../js/productsJson.js"></script>
     <script src="../js/cardapio-sem-cadastro.js"></script>
