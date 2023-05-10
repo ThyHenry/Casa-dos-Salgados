@@ -117,6 +117,8 @@ porcoesIndividuais.map((item) =>{
             cartProduct.querySelector(".cart_info .cart_name_product").innerHTML = item.food_name;
             cartProduct.querySelector(".cart_info .quantity_cart").innerHTML = item.quantity + "un";
             cartProduct.querySelector(".button_quantity_price .cart_price_product").innerHTML = "R$ " + item.total + ",00";
+            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = selectId("commentary").value;
+
 
             let sum = removeDuplicates.reduce((accumulator, object) => {
                 return accumulator + object.total;
@@ -241,6 +243,7 @@ pizzaBrotinho.map((item) =>{
             cartProduct.querySelector(".cart_info .cart_name_product").innerHTML = item.food_name;
             cartProduct.querySelector(".cart_info .quantity_cart").innerHTML = item.quantity + "un";
             cartProduct.querySelector(".button_quantity_price .cart_price_product").innerHTML = "R$ " + item.total + ",00";
+            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = selectId("commentary").value;
 
             let sum = removeDuplicates.reduce((accumulator, object) => {
                 return accumulator + object.total;
@@ -341,6 +344,7 @@ salgadosMistos.map((item) =>{
             cartProduct.querySelector(".cart_info .cart_name_product").innerHTML = item.food_name;
             cartProduct.querySelector(".cart_info .quantity_cart").innerHTML = item.quantity + "un";
             cartProduct.querySelector(".button_quantity_price .cart_price_product").innerHTML = "R$ " + item.total + ",00";
+            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = selectId("commentary").value;
 
             let sum = removeDuplicates.reduce((accumulator, object) => {
                 return accumulator + object.total;
@@ -442,6 +446,7 @@ combos.map((item) =>{
             cartProduct.querySelector(".cart_info .cart_name_product").innerHTML = item.food_name;
             cartProduct.querySelector(".cart_info .quantity_cart").innerHTML = item.quantity + "un";
             cartProduct.querySelector(".button_quantity_price .cart_price_product").innerHTML = "R$ " + item.total + ",00";
+            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = selectId("commentary").value;
 
             let sum = removeDuplicates.reduce((accumulator, object) => {
                 return accumulator + object.total;
@@ -543,6 +548,7 @@ bebidas.map((item) =>{
             cartProduct.querySelector(".cart_info .cart_name_product").innerHTML = item.food_name;
             cartProduct.querySelector(".cart_info .quantity_cart").innerHTML = item.quantity + "un";
             cartProduct.querySelector(".button_quantity_price .cart_price_product").innerHTML = "R$ " + item.total + ",00";
+            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = selectId("commentary").value;
 
             let sum = removeDuplicates.reduce((accumulator, object) => {
                 return accumulator + object.total;
