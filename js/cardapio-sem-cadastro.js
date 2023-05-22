@@ -204,7 +204,7 @@ selectId("button_conclude").onclick = () => {
 
         })
     }
-    
+
    selectId("modal").style.display = "flex";
 
    modalData(item);
@@ -893,6 +893,7 @@ close_modal.addEventListener("click", () => {
         modal.style.display = "none";
         numberOfQuantity.innerHTML = 1;
         quantity = 1;
+        selectId("commentary").value = "";
     } else {
         modal.style.display = "flex";
     }
@@ -904,6 +905,7 @@ selectId("molding").addEventListener("click", () => {
    if(shopping.style.display == "none" || !shopping.style.display) {
         shopping.style.display = "block";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     } else {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
@@ -916,6 +918,7 @@ selectId("molding_nav").addEventListener("click", () => {
    if(shopping.style.display == "none" || !shopping.style.display) {
         shopping.style.display = "block";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     } else {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
@@ -928,6 +931,7 @@ selectId("porcoes_individuais_display").addEventListener("click", () => {
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     }
 })
 
@@ -937,6 +941,7 @@ selectId("pizza_brotinho_display").addEventListener("click", () => {
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     }
 })
 
@@ -946,6 +951,7 @@ selectId("salgados_mistos_display").addEventListener("click", () => {
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     }
 })
 
@@ -955,6 +961,7 @@ selectId("com_bos").addEventListener("click", () => {
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     }
 })
 
@@ -964,6 +971,7 @@ selectId("bebi_das").addEventListener("click", () => {
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     }
 })
 
@@ -973,6 +981,7 @@ selectId("porcoes_individuais_hide").addEventListener("click", () => {
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     }
 })
 
@@ -982,6 +991,7 @@ selectId("pizza_brotinho_hide").addEventListener("click", () => {
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     }
 })
 
@@ -991,6 +1001,7 @@ selectId("salgados_mistos_hide").addEventListener("click", () => {
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     }
 })
 
@@ -1000,6 +1011,7 @@ selectId("com_bos_hide").addEventListener("click", () => {
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     }
 })
 
@@ -1009,6 +1021,7 @@ selectId("bebi_das_hide").addEventListener("click", () => {
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     }
 })
 
