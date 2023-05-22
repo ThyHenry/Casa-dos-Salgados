@@ -681,6 +681,10 @@ header {
     display: flex;
 }
 
+#textAdress {
+    text-align: center;
+}
+
 #inputAdress {
     position: relative;
     border: none;

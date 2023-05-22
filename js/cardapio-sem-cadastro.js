@@ -1050,7 +1050,7 @@ function loading() {
     const load = document.getElementById("loading");
     load.style.display = "flex";
   
-    setTimeout(() => hideLoading(), 2000);
+    setTimeout(() => hideLoading(), 4000);
   }
   
   function hideLoading() {
