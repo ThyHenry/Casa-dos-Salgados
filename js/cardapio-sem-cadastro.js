@@ -909,6 +909,7 @@ selectId("molding").addEventListener("click", () => {
     } else {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     }
 })
 
@@ -922,6 +923,7 @@ selectId("molding_nav").addEventListener("click", () => {
     } else {
         shopping.style.display = "none";
         modalAdress.style.display = "none";
+        selectId("commentary").value = "";
     }
 })
 
