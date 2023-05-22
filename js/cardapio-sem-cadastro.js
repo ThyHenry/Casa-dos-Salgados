@@ -307,11 +307,6 @@ pizzaBrotinho.map((item) =>{
             console.log(sum);
 
             selectId("total").innerHTML = "R$ " + sum + ",00";
-
-            selectId("removeCart").onclick = () => {
-                cart.splice()
-            }
-
                       
 selectId("button_conclude").onclick = () => {
     let radios = document.querySelector("input[name='card']:checked");
