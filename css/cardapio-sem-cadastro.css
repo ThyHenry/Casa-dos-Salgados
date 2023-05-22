@@ -5,6 +5,20 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+
+#loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000000be;
+    color: white;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    z-index: 3000;
+}
+
 body {
     position: relative;
 }
@@ -18,7 +32,7 @@ header {
     align-items: center;
     background-color: white;
     box-shadow: 1px 1px 10px 1px rgb(29, 29, 29);
-    z-index: 5000;
+    z-index: 3000;
 }
 
 #modal {
@@ -239,9 +253,12 @@ header {
     background-color: white;
     z-index: 2000;
     display: none;
-    justify-content: space-between;
+    /* flex-direction: column;
+    justify-content: center;
+    align-items: center; */
     overflow: hidden;
     overflow-y: scroll;
+    /* padding-top: 300px; */
 }
 
 #shoppingCart::-webkit-scrollbar {
@@ -472,6 +489,7 @@ header {
 }
 
 .cartProduct {
+    position: relative;
     border-radius: 20px;
     box-shadow: 2px 3px 10px 1px rgb(48, 48, 48);
     border: 2px solid rgb(162, 162, 162);
@@ -501,6 +519,14 @@ header {
 .cart_price_product {
     margin-top: 5px;
     font-size: 17px;
+}
+
+#removeCart {
+    position: absolute;
+    right: 0;
+    width: 20px;
+    margin-right: 20px;
+    cursor: pointer;
 }
 
 .cart_input_value {
@@ -559,10 +585,10 @@ header {
 }
 
 #amount {
+    width: 100%;
     margin-top: 90px;
-    margin-right: 80px;
+    padding-right: 80px;
     padding-left: 80px;
-    border-left: solid 2px black;
 }
 
 #content_total {
@@ -585,8 +611,31 @@ header {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 200px;
+}
+
+#paymentTitle {
+    font-size: 14px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#paymentGroup {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.paymentInput {
+    margin-right: 15px;
+    margin-bottom: 16px;
+}
+
+.paymentInput input {
+    margin-right: 2px;
+    color:#eead2d;
 }
 
 #button_conclude {
@@ -606,6 +655,64 @@ header {
     background-color: #5fc8f9;
 }
 
+#templateAdress {
+    padding-top: 100px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+#modalAdress {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    width: 400px;
+    box-shadow: 1px 3px 8px 0px #000000c3;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 200px;
+    display: flex;
+}
+
+#inputAdress {
+    position: relative;
+    border: none;
+    border: solid 2px #949494;
+    box-shadow: 1px 3px 8px 0px #00000056;
+    width: 350px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.text_style {
+    color: rgb(195, 21, 21);
+}
+
+#finish {
+    padding: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 1px 3px 8px 0px #0000009f;
+    background-color: #59b7e3;
+    font-weight: 600;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#finish:hover {
+    background-color: #5fc8f9;
+}
 
 @media (max-width: 1150px) {
     #nav {
@@ -681,22 +788,6 @@ header {
     }
 }
 
-@media (max-width: 500px) {
-    .food {
-        font-size: 16px;
-    }
-
-    .logo {
-        width: 250px;
-        height: 250px;
-    }
-
-    .frame {
-        width: 250px;
-        height: 250px;
-    }
-}
-
 @media (max-width: 650px) {
 
     #modal {
@@ -744,6 +835,33 @@ header {
         padding-left: 15px;
         padding-right: 15px;
     }
+
+    #amount {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .food {
+        font-size: 16px;
+    }
+
+    .logo {
+        width: 250px;
+        height: 250px;
+    }
+
+    .frame {
+        width: 250px;
+        height: 250px;
+    }
+
+    #modalAdress {
+        width: 300px;
+    }
+
+    #inputAdress {
+        width: 270px;
+    }
 }
 
 @media (max-width: 360px) {
@@ -760,6 +878,16 @@ header {
         width: 60px;
         border-radius: 10px;
         margin-left: 10px;
+    }
+
+    #modalAdress {
+        margin-top: 100px;
+        width: 100vh;
+        height: 100%;
+    }
+
+    #inputAdress {
+        width: 260px;
     }
 }
 

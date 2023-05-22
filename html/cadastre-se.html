@@ -32,11 +32,101 @@
         <small id="textForm"></small>
 
         <div id="button">
-            <button id="btn" type="submit">Entrar</button>
+            <button id="btn">Entrar</button>
         </div>
         </form>
     </div>
 
+    <div id="loading">
+      <label>Carregando...</label>
+    </div>
+
+    <script src="../js/users.js"></script>
     <script src="../js/cadastre-se.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-messaging.js"></script>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+        // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
+        // import { getAuth } from "firebase/auth";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyBIGyph5n1HIszv0zj1rHzOWFVN-lTDRlw",
+          authDomain: "casa-dos-salgados-496bc.firebaseapp.com",
+          projectId: "casa-dos-salgados-496bc",
+          storageBucket: "casa-dos-salgados-496bc.appspot.com",
+          messagingSenderId: "796367240746",
+          appId: "1:796367240746:web:6c8863da0861f6bed1cd53",
+          measurementId: "G-DVVJDBE69H"
+        };
+      
+        // Initialize Firebase
+        // const app = initializeApp(firebaseConfig);
+        // const analytics = getAnalytics(app);
+        // const auth = getAuth(app);
+
+        firebase.initializeApp(firebaseConfig);
+
+        let email = document.getElementById("email");
+        let password = document.getElementById("password");
+        let btn = document.getElementById("btn");
+        let textEmail = document.getElementById("textEmail");
+        let textPassword = document.getElementById("textPassword");
+
+        btn.addEventListener("click",  () => {
+
+          if (email.value == "" || password.value == "") {
+            textEmail.textContent = "Email é obrigatório";
+            textPassword.textContent = "Senha é obrigatório";
+
+          }else {
+           loading();        
+           firebase.auth().createUserWithEmailAndPassword(email.value, password.value).then(response => {
+            hideLoading();
+            console.log("success", response);
+            window.open("cardapio-sem-cadastro.html", "_self");
+          }).catch(error => {
+            hideLoading();
+             alert(getErrorMessage(error));
+              });
+          }
+          })
+      
+
+           const getErrorMessage = (error) => {
+              if(error.code == "auth/email-already-in-use") {
+                return "Email já está em uso";
+            } else {
+                return error.message;
+            }
+            }
+
+        
+function validatorEmail(email) {
+  let emailPattern =
+    /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+  return emailPattern.test(email);
+}
+ 
+function loading() {
+  const load = document.getElementById("loading");
+  load.style.display = "flex";
+
+  setTimeout(() => hideLoading(), 2000);
+}
+
+function hideLoading() {
+  const load = document.getElementById("loading");
+  load.style.display = "none";
+}
+      </script>
 </body>
 </html>

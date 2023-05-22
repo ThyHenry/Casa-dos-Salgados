@@ -3,6 +3,7 @@ let password = document.getElementById("password");
 let form = document.querySelector("form");
 let textEmail = document.getElementById("textEmail");
 let textPassword = document.getElementById("textPassword");
+let btn = document.getElementById("btn");
 
 form.addEventListener("submit", (e) => {
   if (email.value == "" && password.value == "") {
@@ -22,18 +23,18 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-email.addEventListener("keyup", () => {
+email.addEventListener("change", () => {
   if (validatorEmail(email.value) !== true) {
-    textEmail.textContent = "O email deve ser Ex: nome@gmail.com";
+    textEmail.textContent = "Email inválido";
   } else {
     textEmail.textContent = "";
   }
 });
 
-password.addEventListener("keyup", () => {
-  if (validatorPassword(password.value) !== true) {
+password.addEventListener("change", () => {
+  if (password.value.length < 6) {
     textPassword.textContent =
-      "A senha deve ter no min 6 caracteres, um número e um caractere especial";
+      "A senha deve ter no min 6 caracteres";
   } else {
     textPassword.textContent = "";
   }
@@ -43,10 +44,4 @@ function validatorEmail(email) {
   let emailPattern =
     /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
   return emailPattern.test(email);
-}
-
-function validatorPassword(password) {
-  let passwordPattern =
-    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-  return passwordPattern.test(password);
 }

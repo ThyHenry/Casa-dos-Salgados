@@ -11,9 +11,15 @@ let remove = document.getElementById("remove");
 let content = document.querySelector(".content")
 let numberOfQuantity = document.getElementById("numberOfQuantity");
 let shopping = document.getElementById("shoppingCart");
+let modalAdress = document.getElementById("templateAdress");
+let adress = document.getElementById("inputAdress");
+let finish = document.getElementById("finish");
 let quantity = 1;
 // let sum = 0;
 let cart = [];
+let removeDuplicates = [];
+
+
 
 const select = (element) => document.querySelector(element);
 const selectId = (element) => document.getElementById(element);
@@ -55,7 +61,7 @@ porcoesIndividuais.map((item) =>{
 
         cart.push(myProduct);
 
-        let removeDuplicates = [...new Set(cart)];
+        removeDuplicates = [...new Set(cart)];
         let index = cart.findIndex(i => i.id === item.id);
 
         console.log("index", index);
@@ -127,6 +133,64 @@ porcoesIndividuais.map((item) =>{
             console.log(sum);
 
             selectId("total").innerHTML = "R$ " + sum + ",00";
+
+            
+selectId("button_conclude").onclick = () => {
+   let radios = document.querySelector("input[name='card']:checked");
+ 
+   if (!!radios) {
+       selectId("validationRadios").textContent =  "";
+       modalAdress.style.display = "flex";
+   }
+   else {
+    selectId("validationRadios").textContent =  "Selecione uma forma de pagamento";
+    modalAdress.style.display = "none";
+   }
+}
+            let messageContent = [];
+
+            for (i in removeDuplicates) {
+                let name = removeDuplicates[i].food_name;
+                let qt = removeDuplicates[i].quantity.toString();
+                let coment = selectId("commentary").value;
+            
+                let newMessage = name + " " + qt + "un " + "comentário: " + coment;
+            
+                messageContent.push(newMessage);
+            }
+            
+                    console.log(messageContent);               
+            
+            finish.onclick =  () => {
+                if(adress.value == "") {
+                    selectId("validation").textContent = "O endereço é obrigatório"
+                } else {
+                    loading();
+                    selectId("validation").textContent = ""
+                    let params = {
+                        name: "Nova compra",
+                        email: "novacompraqdeliciacasasalgados@gmail.com",
+                        message: messageContent + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
+                    }
+                
+                    
+                const serviceId = "service_kq1pcuf";
+                const templateId = "template_cjs9iem";
+                
+                emailjs.send(serviceId, templateId, params).then(
+                    res =>{
+                        hideLoading();
+                        alert("sua compra foi realizada");
+                        location.reload();
+                    }
+                ).catch( error => {
+                    hideLoading();
+                    console.log("erro", error);
+                })
+                }
+                }
+            
+
         })
     }
 
@@ -172,7 +236,7 @@ pizzaBrotinho.map((item) =>{
    product.addEventListener("click", (e) => {
     e.preventDefault();
 
-    let myProduct = pizzaBrotinho[item.id -10];
+    let myProduct = pizzaBrotinho[item.id -9];
 
     console.log("meu produto clicado", myProduct);
 
@@ -181,7 +245,7 @@ pizzaBrotinho.map((item) =>{
 
         cart.push(myProduct);
 
-        let removeDuplicates = [...new Set(cart)];
+        removeDuplicates = [...new Set(cart)];
         let index = cart.findIndex(i => i.id === item.id);
 
         console.log("index", index);
@@ -252,6 +316,64 @@ pizzaBrotinho.map((item) =>{
             console.log(sum);
 
             selectId("total").innerHTML = "R$ " + sum + ",00";
+
+                      
+selectId("button_conclude").onclick = () => {
+    let radios = document.querySelector("input[name='card']:checked");
+  
+    if (!!radios) {
+        selectId("validationRadios").textContent =  "";
+        modalAdress.style.display = "flex";
+    }
+    else {
+     selectId("validationRadios").textContent =  "Selecione uma forma de pagamento";
+     modalAdress.style.display = "none";
+    }
+ }
+             let messageContent = [];
+ 
+             for (i in removeDuplicates) {
+                 let name = removeDuplicates[i].food_name;
+                 let qt = removeDuplicates[i].quantity.toString();
+                 let coment = selectId("commentary").value;
+             
+                 let newMessage = name + " " + qt + "un " + "comentário: " + coment;
+             
+                 messageContent.push(newMessage);
+             }
+             
+                     console.log(messageContent);               
+             
+             finish.onclick =  () => {
+                 if(adress.value == "") {
+                     selectId("validation").textContent = "O endereço é obrigatório"
+                 } else {
+                    loading();
+                     selectId("validation").textContent = ""
+                     let params = {
+                         name: "Nova compra",
+                         email: "novacompraqdeliciacasasalgados@gmail.com",
+                         message: messageContent + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
+                     }
+                 
+                     
+                 const serviceId = "service_kq1pcuf";
+                 const templateId = "template_cjs9iem";
+                 
+                 emailjs.send(serviceId, templateId, params).then(
+                     res =>{
+                        hideLoading();
+                         alert("sua compra foi realizada");
+                         location.reload();
+                     }
+                 ).catch( error => {
+                    hideLoading();
+                     console.log("erro", error);
+                 })
+                 }
+                 }
+             
+            
         })
     }
    selectId("modal").style.display = "flex";
@@ -273,7 +395,7 @@ salgadosMistos.map((item) =>{
    product.addEventListener("click", (e) => {
     e.preventDefault();
 
-    let myProduct = salgadosMistos[item.id -17];
+    let myProduct = salgadosMistos[item.id -16];
 
     console.log("meu produto clicado", myProduct);
 
@@ -282,7 +404,7 @@ salgadosMistos.map((item) =>{
 
         cart.push(myProduct);
 
-        let removeDuplicates = [...new Set(cart)];
+        removeDuplicates = [...new Set(cart)];
         let index = cart.findIndex(i => i.id === item.id);
 
         console.log("index", index);
@@ -353,6 +475,63 @@ salgadosMistos.map((item) =>{
             console.log(sum);
 
             selectId("total").innerHTML = "R$ " + sum + ",00";
+
+                        
+selectId("button_conclude").onclick = () => {
+    let radios = document.querySelector("input[name='card']:checked");
+  
+    if (!!radios) {
+        selectId("validationRadios").textContent =  "";
+        modalAdress.style.display = "flex";
+    }
+    else {
+     selectId("validationRadios").textContent =  "Selecione uma forma de pagamento";
+     modalAdress.style.display = "none";
+    }
+ }
+             let messageContent = [];
+ 
+             for (i in removeDuplicates) {
+                 let name = removeDuplicates[i].food_name;
+                 let qt = removeDuplicates[i].quantity.toString();
+                 let coment = selectId("commentary").value;
+             
+                 let newMessage = name + " " + qt + "un " + "comentário: " + coment;
+             
+                 messageContent.push(newMessage);
+             }
+             
+                     console.log(messageContent);               
+             
+             finish.onclick =  () => {
+                 if(adress.value == "") {
+                     selectId("validation").textContent = "O endereço é obrigatório"
+                 } else {
+                    loading();
+                     selectId("validation").textContent = ""
+                     let params = {
+                         name: "Nova compra",
+                         email: "novacompraqdeliciacasasalgados@gmail.com",
+                         message: messageContent + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
+                     }
+                 
+                     
+                 const serviceId = "service_kq1pcuf";
+                 const templateId = "template_cjs9iem";
+                 
+                 emailjs.send(serviceId, templateId, params).then(
+                     res =>{
+                        hideLoading();
+                         alert("sua compra foi realizada");
+                         location.reload();
+                     }
+                 ).catch( error => {
+                    hideLoading();
+                     console.log("erro", error);
+                 })
+                 }
+                 }
+             
         })
     }
 
@@ -375,7 +554,7 @@ combos.map((item) =>{
    product.addEventListener("click", (e) => {
     e.preventDefault();
 
-    let myProduct = combos[item.id -27];
+    let myProduct = combos[item.id -26];
 
     console.log("meu produto clicado", myProduct);
 
@@ -384,7 +563,7 @@ combos.map((item) =>{
 
         cart.push(myProduct);
 
-        let removeDuplicates = [...new Set(cart)];
+        removeDuplicates = [...new Set(cart)];
         let index = cart.findIndex(i => i.id === item.id);
 
         console.log("index", index);
@@ -455,6 +634,63 @@ combos.map((item) =>{
             console.log(sum);
 
             selectId("total").innerHTML = "R$ " + sum + ",00";
+
+                       
+selectId("button_conclude").onclick = () => {
+    let radios = document.querySelector("input[name='card']:checked");
+  
+    if (!!radios) {
+        selectId("validationRadios").textContent =  "";
+        modalAdress.style.display = "flex";
+    }
+    else {
+     selectId("validationRadios").textContent =  "Selecione uma forma de pagamento";
+     modalAdress.style.display = "none";
+    }
+ }
+             let messageContent = [];
+ 
+             for (i in removeDuplicates) {
+                 let name = removeDuplicates[i].food_name;
+                 let qt = removeDuplicates[i].quantity.toString();
+                 let coment = selectId("commentary").value;
+             
+                 let newMessage = name + " " + qt + "un " + "comentário: " + coment;
+             
+                 messageContent.push(newMessage);
+             }
+             
+                     console.log(messageContent);               
+             
+             finish.onclick =  () => {
+                 if(adress.value == "") {
+                     selectId("validation").textContent = "O endereço é obrigatório"
+                 } else {
+                    loading();
+                     selectId("validation").textContent = ""
+                     let params = {
+                         name: "Nova compra",
+                         email: "novacompraqdeliciacasasalgados@gmail.com",
+                         message: messageContent + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
+                     }
+                 
+                     
+                 const serviceId = "service_kq1pcuf";
+                 const templateId = "template_cjs9iem";
+                 
+                 emailjs.send(serviceId, templateId, params).then(
+                     res =>{
+                        hideLoading();
+                         alert("sua compra foi realizada");
+                         location.reload();
+                     }
+                 ).catch( error => {
+                    hideLoading();
+                     console.log("erro", error);
+                 })
+                 }
+                 }
+             
         })
     }
 
@@ -472,12 +708,14 @@ bebidas.map((item) =>{
 
   selectId("drinks").append(product);
    
-  productData(product, item);
+   product.querySelector(".content .food").innerHTML = item.food_name;
+   product.querySelector(".content .price").innerHTML = "R$ " + item.price;
+   product.querySelector(".img .image_product").src = item.image;
 
    product.addEventListener("click", (e) => {
     e.preventDefault();
 
-    let myProduct = bebidas[item.id -39];
+    let myProduct = bebidas[item.id -38];
 
     console.log("meu produto clicado", myProduct);
 
@@ -486,7 +724,7 @@ bebidas.map((item) =>{
 
         cart.push(myProduct);
 
-        let removeDuplicates = [...new Set(cart)];
+        removeDuplicates = [...new Set(cart)];
         let index = cart.findIndex(i => i.id === item.id);
 
         console.log("index", index);
@@ -557,6 +795,63 @@ bebidas.map((item) =>{
             console.log(sum);
 
             selectId("total").innerHTML = "R$ " + sum + ",00";
+
+                        
+selectId("button_conclude").onclick = () => {
+    let radios = document.querySelector("input[name='card']:checked");
+  
+    if (!!radios) {
+        selectId("validationRadios").textContent =  "";
+        modalAdress.style.display = "flex";
+    }
+    else {
+     selectId("validationRadios").textContent =  "Selecione uma forma de pagamento";
+     modalAdress.style.display = "none";
+    }
+ }
+             let messageContent = [];
+ 
+             for (i in removeDuplicates) {
+                 let name = removeDuplicates[i].food_name;
+                 let qt = removeDuplicates[i].quantity.toString();
+                 let coment = selectId("commentary").value;
+             
+                 let newMessage = name + " " + qt + "un " + "comentário: " + coment;
+             
+                 messageContent.push(newMessage);
+             }
+             
+                     console.log(messageContent);               
+             
+             finish.onclick =  () => {
+                 if(adress.value == "") {
+                     selectId("validation").textContent = "O endereço é obrigatório"
+                 } else {
+                    loading();
+                     selectId("validation").textContent = ""
+                     let params = {
+                         name: "Nova compra",
+                         email: "novacompraqdeliciacasasalgados@gmail.com",
+                         message: messageContent + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
+                     }
+                 
+                     
+                 const serviceId = "service_kq1pcuf";
+                 const templateId = "template_cjs9iem";
+                 
+                 emailjs.send(serviceId, templateId, params).then(
+                     res =>{
+                        hideLoading();
+                         alert("sua compra foi realizada");
+                         location.reload();
+                     }
+                 ).catch( error => {
+                    hideLoading();
+                     console.log("erro", error);
+                 })
+                 }
+                 }
+             
         })
     }
    selectId("modal").style.display = "flex";
@@ -568,6 +863,13 @@ bebidas.map((item) =>{
 
 })
 
+// let selectedCard = document.querySelectorAll("input[name='card']:checked");
+
+// selectedCard.forEach(selectedCard => {
+//     selectedCard.addEventListener("change", () => {
+//         console.log("card",selectedCard)
+//     })
+// })
 
 Show.addEventListener("click", () => {
     if(Nav_hide.style.display == "none" || !Nav_hide.style.display) {
@@ -595,13 +897,24 @@ close_modal.addEventListener("click", () => {
     }
 })
 
+// selectId("button_conclude").addEventListener("click", () => {
+//     // console.log(selectedCard.value);
+//     if(modalAdress.style.display == "none" || !modalAdress.style.display) {
+//         modalAdress.style.display = "flex";
+//     } else {
+//         modalAdress.style.display = "none";
+//     }
+// })
+
 selectId("molding").addEventListener("click", () => {
     modal.style.display = "none";
     numberOfQuantity.innerHTML = 1;
    if(shopping.style.display == "none" || !shopping.style.display) {
         shopping.style.display = "block";
+        modalAdress.style.display = "none";
     } else {
         shopping.style.display = "none";
+        modalAdress.style.display = "none";
     }
 })
 
@@ -610,8 +923,10 @@ selectId("molding_nav").addEventListener("click", () => {
     numberOfQuantity.innerHTML = 1;
    if(shopping.style.display == "none" || !shopping.style.display) {
         shopping.style.display = "block";
+        modalAdress.style.display = "none";
     } else {
         shopping.style.display = "none";
+        modalAdress.style.display = "none";
     }
 })
 
@@ -620,6 +935,7 @@ selectId("porcoes_individuais_display").addEventListener("click", () => {
     numberOfQuantity.innerHTML = 1;
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
+        modalAdress.style.display = "none";
     }
 })
 
@@ -628,6 +944,7 @@ selectId("pizza_brotinho_display").addEventListener("click", () => {
     numberOfQuantity.innerHTML = 1;
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
+        modalAdress.style.display = "none";
     }
 })
 
@@ -636,6 +953,7 @@ selectId("salgados_mistos_display").addEventListener("click", () => {
     numberOfQuantity.innerHTML = 1;
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
+        modalAdress.style.display = "none";
     }
 })
 
@@ -644,6 +962,7 @@ selectId("com_bos").addEventListener("click", () => {
     numberOfQuantity.innerHTML = 1;
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
+        modalAdress.style.display = "none";
     }
 })
 
@@ -652,6 +971,7 @@ selectId("bebi_das").addEventListener("click", () => {
     numberOfQuantity.innerHTML = 1;
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
+        modalAdress.style.display = "none";
     }
 })
 
@@ -660,6 +980,7 @@ selectId("porcoes_individuais_hide").addEventListener("click", () => {
     numberOfQuantity.innerHTML = 1;
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
+        modalAdress.style.display = "none";
     }
 })
 
@@ -668,6 +989,7 @@ selectId("pizza_brotinho_hide").addEventListener("click", () => {
     numberOfQuantity.innerHTML = 1;
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
+        modalAdress.style.display = "none";
     }
 })
 
@@ -676,6 +998,7 @@ selectId("salgados_mistos_hide").addEventListener("click", () => {
     numberOfQuantity.innerHTML = 1;
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
+        modalAdress.style.display = "none";
     }
 })
 
@@ -684,6 +1007,7 @@ selectId("com_bos_hide").addEventListener("click", () => {
     numberOfQuantity.innerHTML = 1;
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
+        modalAdress.style.display = "none";
     }
 })
 
@@ -692,6 +1016,7 @@ selectId("bebi_das_hide").addEventListener("click", () => {
     numberOfQuantity.innerHTML = 1;
    if(shopping.style.display == "block" || !shopping.style.display) {
         shopping.style.display = "none";
+        modalAdress.style.display = "none";
     }
 })
 
@@ -715,3 +1040,17 @@ remove.addEventListener("click", () => {
     }
     
 })
+
+function loading() {
+    const load = document.getElementById("loading");
+    load.style.display = "flex";
+  
+    setTimeout(() => hideLoading(), 2000);
+  }
+  
+  function hideLoading() {
+    const load = document.getElementById("loading");
+    load.style.display = "none";
+  }
+
+

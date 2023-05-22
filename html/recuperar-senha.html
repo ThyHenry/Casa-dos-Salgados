@@ -4,40 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/bem-vindo-de-volta.css">
-    <title>Bem vindo de volta</title>
+    <link rel="stylesheet" href="../css/recuperar-senha.css">
+    <title>Recuperar senha</title>
 </head>
 <body>
     <div id="content">
-        <h2>Bem vindo de volta</h2>
-
+        <form autocomplete="off">
         <div class="input_box">
             <label for="email">E-mail</label>
             <input id="email" type="email" name="email" placeholder="Digite seu e-mail" required>
+            <small id="textEmail" class="text_style"></small>
         </div>
+    </form>
 
-        <div class="input_box">
-            <label for="password">Senha</label>
-            <input id="password" type="password" name="password" placeholder="Digite sua senha" required>
-        </div>
-
-        <div id="link">
-            <a href="recuperar-senha.html" id="recoverPassword">Esqueci minha senha</a>
-            <a href="cadastre-se.html" id="cadastre">Não sou cadastrado</a>
-        </div>
-
-        <div class="button">
-            <button id="continue" type="submit">Entrar</button>
-        </div>
+    <div id="button">
+        <button id="btn">Recuperar senha</button>
+    </div>
     </div>
 
-    
-    <div id="loading">
-        <label>Carregando...</label>
-      </div>
-
-
-    <script src="../js/users.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
@@ -72,27 +56,14 @@
 
         let email = document.getElementById("email");
 
-        let password = document.getElementById("password");
-
-        let btn = document.getElementById("continue");
-
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                window.open("cardapio-sem-cadastro.html", "_self");
-            }
-        })
+        let btn = document.getElementById("btn");
 
         btn.addEventListener("click", () => {
-            loading();
-firebase.auth().signInWithEmailAndPassword(email.value, password.value).then(response => {
-    hideLoading();
-  console.log("success", response);
-  window.open("cardapio-sem-cadastro.html", "_self");
-}).catch(error => {
-    hideLoading();
-    alert(getErrorMessage(error));
-  console.log("error", error);
-});
+            firebase.auth().sendPasswordResetEmail(email.vaule).then(() => {
+            alert("Email enviado com sucesso");
+        }).catch(error => {
+            alert(getErrorMessage(error));
+        })
         })
 
         const getErrorMessage = (error) => {
@@ -102,19 +73,6 @@ firebase.auth().signInWithEmailAndPassword(email.value, password.value).then(res
                 return error.message;
             }
         }
-
-         
-function loading() {
-  const load = document.getElementById("loading");
-  load.style.display = "flex";
-
-  setTimeout(() => hideLoading(), 2000);
-}
-
-function hideLoading() {
-  const load = document.getElementById("loading");
-  load.style.display = "none";
-}
 
  
       </script>

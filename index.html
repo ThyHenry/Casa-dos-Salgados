@@ -18,7 +18,7 @@
            <a href="tel:4792191745" class="link"><li class="social" id="number">47 9219-1745</li></a>
            <a href="https://www.instagram.com/qdeliciaitajai/" class="link"> <li class="social" id="insta">qdelicia</li></a>
            <a href="https://www.instagram.com/casadossalgadositajai/" class="link"> <li class="social" id="insta">casadossalgadositajai</li></a>
-           <a href="https://wa.me/c/554792191745" class="link"> <li class="social" id="whats">Qdelicia/ Casa dos Salgados</li></a>
+           <a href="https://wa.me/c/554792191745" class="link"> <li class="social" id="whats">Qdelicia</li></a>
         </ul>
 
         <div id="nav_hide">
@@ -29,7 +29,7 @@
             <a href="tel:4792191745" class="link"><li class="social" id="number">47 9219-1745</li></a>
             <a href="https://www.instagram.com/qdeliciaitajai/" class="link"> <li class="social" id="insta">qdelicia</li></a>
             <a href="https://www.instagram.com/casadossalgadositajai/" class="link"> <li class="social" id="insta">casadossalgadositajai</li></a>
-            <a href="https://wa.me/c/554792191745" class="link"> <li class="social" id="whats">Qdelicia/Casa dos Salgados</li></a>
+            <a href="https://wa.me/c/554792191745" class="link"> <li class="social" id="whats">Qdelicia</li></a>
          </ul>
         </div>
 
@@ -50,5 +50,40 @@
     </main>
 
     <script src="js/script.js"></script>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+        // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
+        // import { getAuth } from "firebase/auth";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyBIGyph5n1HIszv0zj1rHzOWFVN-lTDRlw",
+          authDomain: "casa-dos-salgados-496bc.firebaseapp.com",
+          projectId: "casa-dos-salgados-496bc",
+          storageBucket: "casa-dos-salgados-496bc.appspot.com",
+          messagingSenderId: "796367240746",
+          appId: "1:796367240746:web:6c8863da0861f6bed1cd53",
+          measurementId: "G-DVVJDBE69H"
+        };
+      
+        // Initialize Firebase
+        // const app = initializeApp(firebaseConfig);
+        // const analytics = getAnalytics(app);
+        // const auth = getAuth(app);
+
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                window.open("cardapio-sem-cadastro.html", "_self");
+            }
+        })
+ 
+      </script>
 </body>
 </html>
