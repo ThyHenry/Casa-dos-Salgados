@@ -15,7 +15,6 @@ let modalAdress = document.getElementById("templateAdress");
 let adress = document.getElementById("inputAdress");
 let finish = document.getElementById("finish");
 let quantity = 1;
-// let sum = 0;
 let cart = [];
 let removeDuplicates = [];
 
@@ -62,15 +61,14 @@ porcoesIndividuais.map((item) =>{
         cart.push(myProduct);
 
         removeDuplicates = [...new Set(cart)];
-        let index = cart.findIndex(i => i.id === item.id);
-
-        console.log("index", index);
         
         console.log("item adicionado", removeDuplicates);
 
         console.log(quantity);
 
         let totalQuantity = quantity * parseFloat(item.price);
+
+        item.option = selectId("commentary").value;
         
         Object.defineProperty(item, "quantity",{
             value: quantity,
@@ -105,6 +103,10 @@ porcoesIndividuais.map((item) =>{
         removeDuplicates.map((item) => {
             let cartProduct = document.querySelector("#clone .cartProduct").cloneNode(true);
 
+            let index = cart.findIndex(i => i.id === item.id);
+
+        console.log("index", index);
+
             console.log(cartProduct);
             selectId("cartContent").append(cartProduct);
 
@@ -123,7 +125,7 @@ porcoesIndividuais.map((item) =>{
             cartProduct.querySelector(".cart_info .cart_name_product").innerHTML = item.food_name;
             cartProduct.querySelector(".cart_info .quantity_cart").innerHTML = item.quantity + "un";
             cartProduct.querySelector(".button_quantity_price .cart_price_product").innerHTML = "R$ " + item.total + ",00";
-            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = selectId("commentary").value;
+            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = item.option;
 
 
             let sum = removeDuplicates.reduce((accumulator, object) => {
@@ -135,9 +137,18 @@ porcoesIndividuais.map((item) =>{
             selectId("total").innerHTML = "R$ " + sum + ",00";
 
             
+            // selectId("removeCart").addEventListener("click", () => {
+            //     console.log(removeDuplicates);
+            //     // removeDuplicates.splice(0, 1);
+            //     // console.log(removeDuplicates);
+            // })
+
+            
+
+            
 selectId("button_conclude").onclick = () => {
    let radios = document.querySelector("input[name='card']:checked");
- 
+   
    if (!!radios) {
        selectId("validationRadios").textContent =  "";
        modalAdress.style.display = "flex";
@@ -152,9 +163,9 @@ selectId("button_conclude").onclick = () => {
             for (i in removeDuplicates) {
                 let name = removeDuplicates[i].food_name;
                 let qt = removeDuplicates[i].quantity.toString();
-                let coment = selectId("commentary").value;
+                let coment = removeDuplicates[i].option;
             
-                let newMessage = name + " " + qt + "un " + "comentário: " + coment;
+                let newMessage = name + " / " + qt + "un " + " / " + "comentário: " + coment;
             
                 messageContent.push(newMessage);
             }
@@ -170,7 +181,7 @@ selectId("button_conclude").onclick = () => {
                     let params = {
                         name: "Nova compra",
                         email: "novacompraqdeliciacasasalgados@gmail.com",
-                        message: messageContent + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
+                        message: messageContent + " /" + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
                     }
                 
                     
@@ -179,8 +190,8 @@ selectId("button_conclude").onclick = () => {
                 
                 emailjs.send(serviceId, templateId, params).then(
                     res =>{
-                        hideLoading();
                         alert("sua compra foi realizada");
+                        hideLoading();
                         location.reload();
                     }
                 ).catch( error => {
@@ -193,29 +204,7 @@ selectId("button_conclude").onclick = () => {
 
         })
     }
-
-               
-// select(".add_quantity").addEventListener("click", () => { 
-//     quantity++;
-//     cartProduct.querySelector(".cart_info .quantity_cart").innerHTML = quantity + "un";
-// })
-
-
-
-// select(".remove_quantity").addEventListener("click", () => {
-//     quantity--;
-//     cartProduct.querySelector(".cart_info .quantity_cart").innerHTML = quantity + "un";
     
-//     if(numberOfQuantity.innerHTML == 0 ){
-//         modal.style.display = "none";
-//         numberOfQuantity.innerHTML = 1;
-//         quantity = 1;
-//     } else {
-//         modal.style.display = "flex";
-//     }
-    
-// })
-
    selectId("modal").style.display = "flex";
 
    modalData(item);
@@ -255,6 +244,8 @@ pizzaBrotinho.map((item) =>{
         console.log(quantity);
 
         let totalQuantity = quantity * parseFloat(item.price);
+
+        item.option = selectId("commentary").value;
         
         Object.defineProperty(item, "quantity",{
             value: quantity,
@@ -307,7 +298,7 @@ pizzaBrotinho.map((item) =>{
             cartProduct.querySelector(".cart_info .cart_name_product").innerHTML = item.food_name;
             cartProduct.querySelector(".cart_info .quantity_cart").innerHTML = item.quantity + "un";
             cartProduct.querySelector(".button_quantity_price .cart_price_product").innerHTML = "R$ " + item.total + ",00";
-            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = selectId("commentary").value;
+            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = item.option;
 
             let sum = removeDuplicates.reduce((accumulator, object) => {
                 return accumulator + object.total;
@@ -316,6 +307,10 @@ pizzaBrotinho.map((item) =>{
             console.log(sum);
 
             selectId("total").innerHTML = "R$ " + sum + ",00";
+
+            selectId("removeCart").onclick = () => {
+                cart.splice()
+            }
 
                       
 selectId("button_conclude").onclick = () => {
@@ -333,45 +328,47 @@ selectId("button_conclude").onclick = () => {
              let messageContent = [];
  
              for (i in removeDuplicates) {
-                 let name = removeDuplicates[i].food_name;
-                 let qt = removeDuplicates[i].quantity.toString();
-                 let coment = selectId("commentary").value;
-             
-                 let newMessage = name + " " + qt + "un " + "comentário: " + coment;
-             
-                 messageContent.push(newMessage);
-             }
-             
-                     console.log(messageContent);               
-             
-             finish.onclick =  () => {
-                 if(adress.value == "") {
-                     selectId("validation").textContent = "O endereço é obrigatório"
-                 } else {
+                let name = removeDuplicates[i].food_name;
+                let qt = removeDuplicates[i].quantity.toString();
+                let coment = removeDuplicates[i].option;
+            
+                let newMessage = name + " / " + qt + "un " + " / " + "comentário: " + coment;
+            
+                messageContent.push(newMessage);
+            }
+            
+                    console.log(messageContent);               
+            
+            finish.onclick =  () => {
+                if(adress.value == "") {
+                    selectId("validation").textContent = "O endereço é obrigatório"
+                } else {
                     loading();
-                     selectId("validation").textContent = ""
-                     let params = {
-                         name: "Nova compra",
-                         email: "novacompraqdeliciacasasalgados@gmail.com",
-                         message: messageContent + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
-                     }
-                 
-                     
-                 const serviceId = "service_kq1pcuf";
-                 const templateId = "template_cjs9iem";
-                 
-                 emailjs.send(serviceId, templateId, params).then(
-                     res =>{
+                    selectId("validation").textContent = ""
+                    let params = {
+                        name: "Nova compra",
+                        email: "novacompraqdeliciacasasalgados@gmail.com",
+                        message: messageContent + " /" + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
+                    }
+                
+                    
+                const serviceId = "service_kq1pcuf";
+                const templateId = "template_cjs9iem";
+                
+                emailjs.send(serviceId, templateId, params).then(
+                    res =>{
+                        alert("sua compra foi realizada");
                         hideLoading();
-                         alert("sua compra foi realizada");
-                         location.reload();
-                     }
-                 ).catch( error => {
+                        location.reload();
+                    }
+                ).catch( error => {
                     hideLoading();
-                     console.log("erro", error);
-                 })
-                 }
-                 }
+                    console.log("erro", error);
+                })
+                }
+                }
+            
+
              
             
         })
@@ -414,6 +411,8 @@ salgadosMistos.map((item) =>{
         console.log(quantity);
 
         let totalQuantity = quantity * parseFloat(item.price);
+
+        item.option = selectId("commentary").value;
         
         Object.defineProperty(item, "quantity",{
             value: quantity,
@@ -466,7 +465,7 @@ salgadosMistos.map((item) =>{
             cartProduct.querySelector(".cart_info .cart_name_product").innerHTML = item.food_name;
             cartProduct.querySelector(".cart_info .quantity_cart").innerHTML = item.quantity + "un";
             cartProduct.querySelector(".button_quantity_price .cart_price_product").innerHTML = "R$ " + item.total + ",00";
-            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = selectId("commentary").value;
+            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = item.option;
 
             let sum = removeDuplicates.reduce((accumulator, object) => {
                 return accumulator + object.total;
@@ -492,45 +491,47 @@ selectId("button_conclude").onclick = () => {
              let messageContent = [];
  
              for (i in removeDuplicates) {
-                 let name = removeDuplicates[i].food_name;
-                 let qt = removeDuplicates[i].quantity.toString();
-                 let coment = selectId("commentary").value;
-             
-                 let newMessage = name + " " + qt + "un " + "comentário: " + coment;
-             
-                 messageContent.push(newMessage);
-             }
-             
-                     console.log(messageContent);               
-             
-             finish.onclick =  () => {
-                 if(adress.value == "") {
-                     selectId("validation").textContent = "O endereço é obrigatório"
-                 } else {
+                let name = removeDuplicates[i].food_name;
+                let qt = removeDuplicates[i].quantity.toString();
+                let coment = removeDuplicates[i].option;
+            
+                let newMessage = name + " / " + qt + "un " + " / " + "comentário: " + coment;
+            
+                messageContent.push(newMessage);
+            }
+            
+                    console.log(messageContent);               
+            
+            finish.onclick =  () => {
+                if(adress.value == "") {
+                    selectId("validation").textContent = "O endereço é obrigatório"
+                } else {
                     loading();
-                     selectId("validation").textContent = ""
-                     let params = {
-                         name: "Nova compra",
-                         email: "novacompraqdeliciacasasalgados@gmail.com",
-                         message: messageContent + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
-                     }
-                 
-                     
-                 const serviceId = "service_kq1pcuf";
-                 const templateId = "template_cjs9iem";
-                 
-                 emailjs.send(serviceId, templateId, params).then(
-                     res =>{
+                    selectId("validation").textContent = ""
+                    let params = {
+                        name: "Nova compra",
+                        email: "novacompraqdeliciacasasalgados@gmail.com",
+                        message: messageContent + " /" + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
+                    }
+                
+                    
+                const serviceId = "service_kq1pcuf";
+                const templateId = "template_cjs9iem";
+                
+                emailjs.send(serviceId, templateId, params).then(
+                    res =>{
+                        alert("sua compra foi realizada");
                         hideLoading();
-                         alert("sua compra foi realizada");
-                         location.reload();
-                     }
-                 ).catch( error => {
+                        location.reload();
+                    }
+                ).catch( error => {
                     hideLoading();
-                     console.log("erro", error);
-                 })
-                 }
-                 }
+                    console.log("erro", error);
+                })
+                }
+                }
+            
+
              
         })
     }
@@ -573,6 +574,8 @@ combos.map((item) =>{
         console.log(quantity);
 
         let totalQuantity = quantity * parseFloat(item.price);
+
+        item.option = selectId("commentary").value;
         
         Object.defineProperty(item, "quantity",{
             value: quantity,
@@ -625,7 +628,7 @@ combos.map((item) =>{
             cartProduct.querySelector(".cart_info .cart_name_product").innerHTML = item.food_name;
             cartProduct.querySelector(".cart_info .quantity_cart").innerHTML = item.quantity + "un";
             cartProduct.querySelector(".button_quantity_price .cart_price_product").innerHTML = "R$ " + item.total + ",00";
-            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = selectId("commentary").value;
+            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = item.option;
 
             let sum = removeDuplicates.reduce((accumulator, object) => {
                 return accumulator + object.total;
@@ -651,46 +654,47 @@ selectId("button_conclude").onclick = () => {
              let messageContent = [];
  
              for (i in removeDuplicates) {
-                 let name = removeDuplicates[i].food_name;
-                 let qt = removeDuplicates[i].quantity.toString();
-                 let coment = selectId("commentary").value;
-             
-                 let newMessage = name + " " + qt + "un " + "comentário: " + coment;
-             
-                 messageContent.push(newMessage);
-             }
-             
-                     console.log(messageContent);               
-             
-             finish.onclick =  () => {
-                 if(adress.value == "") {
-                     selectId("validation").textContent = "O endereço é obrigatório"
-                 } else {
+                let name = removeDuplicates[i].food_name;
+                let qt = removeDuplicates[i].quantity.toString();
+                let coment = removeDuplicates[i].option;
+            
+                let newMessage = name + " / " + qt + "un " + " / " + "comentário: " + coment;
+            
+                messageContent.push(newMessage);
+            }
+            
+                    console.log(messageContent);               
+            
+            finish.onclick =  () => {
+                if(adress.value == "") {
+                    selectId("validation").textContent = "O endereço é obrigatório"
+                } else {
                     loading();
-                     selectId("validation").textContent = ""
-                     let params = {
-                         name: "Nova compra",
-                         email: "novacompraqdeliciacasasalgados@gmail.com",
-                         message: messageContent + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
-                     }
-                 
-                     
-                 const serviceId = "service_kq1pcuf";
-                 const templateId = "template_cjs9iem";
-                 
-                 emailjs.send(serviceId, templateId, params).then(
-                     res =>{
+                    selectId("validation").textContent = ""
+                    let params = {
+                        name: "Nova compra",
+                        email: "novacompraqdeliciacasasalgados@gmail.com",
+                        message: messageContent + " /" + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
+                    }
+                
+                    
+                const serviceId = "service_kq1pcuf";
+                const templateId = "template_cjs9iem";
+                
+                emailjs.send(serviceId, templateId, params).then(
+                    res =>{
+                        alert("sua compra foi realizada");
                         hideLoading();
-                         alert("sua compra foi realizada");
-                         location.reload();
-                     }
-                 ).catch( error => {
+                        location.reload();
+                    }
+                ).catch( error => {
                     hideLoading();
-                     console.log("erro", error);
-                 })
-                 }
-                 }
-             
+                    console.log("erro", error);
+                })
+                }
+                }
+            
+
         })
     }
 
@@ -734,6 +738,8 @@ bebidas.map((item) =>{
         console.log(quantity);
 
         let totalQuantity = quantity * parseFloat(item.price);
+
+        item.option = selectId("commentary").value;
         
         Object.defineProperty(item, "quantity",{
             value: quantity,
@@ -786,7 +792,7 @@ bebidas.map((item) =>{
             cartProduct.querySelector(".cart_info .cart_name_product").innerHTML = item.food_name;
             cartProduct.querySelector(".cart_info .quantity_cart").innerHTML = item.quantity + "un";
             cartProduct.querySelector(".button_quantity_price .cart_price_product").innerHTML = "R$ " + item.total + ",00";
-            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = selectId("commentary").value;
+            cartProduct.querySelector(".cart_input_value .input_value").innerHTML = item.option;
 
             let sum = removeDuplicates.reduce((accumulator, object) => {
                 return accumulator + object.total;
@@ -812,45 +818,47 @@ selectId("button_conclude").onclick = () => {
              let messageContent = [];
  
              for (i in removeDuplicates) {
-                 let name = removeDuplicates[i].food_name;
-                 let qt = removeDuplicates[i].quantity.toString();
-                 let coment = selectId("commentary").value;
-             
-                 let newMessage = name + " " + qt + "un " + "comentário: " + coment;
-             
-                 messageContent.push(newMessage);
-             }
-             
-                     console.log(messageContent);               
-             
-             finish.onclick =  () => {
-                 if(adress.value == "") {
-                     selectId("validation").textContent = "O endereço é obrigatório"
-                 } else {
+                let name = removeDuplicates[i].food_name;
+                let qt = removeDuplicates[i].quantity.toString();
+                let coment = removeDuplicates[i].option;
+            
+                let newMessage = name + " / " + qt + "un " + " / " + "comentário: " + coment;
+            
+                messageContent.push(newMessage);
+            }
+            
+                    console.log(messageContent);               
+            
+            finish.onclick =  () => {
+                if(adress.value == "") {
+                    selectId("validation").textContent = "O endereço é obrigatório"
+                } else {
                     loading();
-                     selectId("validation").textContent = ""
-                     let params = {
-                         name: "Nova compra",
-                         email: "novacompraqdeliciacasasalgados@gmail.com",
-                         message: messageContent + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
-                     }
-                 
-                     
-                 const serviceId = "service_kq1pcuf";
-                 const templateId = "template_cjs9iem";
-                 
-                 emailjs.send(serviceId, templateId, params).then(
-                     res =>{
+                    selectId("validation").textContent = ""
+                    let params = {
+                        name: "Nova compra",
+                        email: "novacompraqdeliciacasasalgados@gmail.com",
+                        message: messageContent + " /" + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
+                    }
+                
+                    
+                const serviceId = "service_kq1pcuf";
+                const templateId = "template_cjs9iem";
+                
+                emailjs.send(serviceId, templateId, params).then(
+                    res =>{
+                        alert("sua compra foi realizada");
                         hideLoading();
-                         alert("sua compra foi realizada");
-                         location.reload();
-                     }
-                 ).catch( error => {
+                        location.reload();
+                    }
+                ).catch( error => {
                     hideLoading();
-                     console.log("erro", error);
-                 })
-                 }
-                 }
+                    console.log("erro", error);
+                })
+                }
+                }
+            
+
              
         })
     }
@@ -863,13 +871,6 @@ selectId("button_conclude").onclick = () => {
 
 })
 
-// let selectedCard = document.querySelectorAll("input[name='card']:checked");
-
-// selectedCard.forEach(selectedCard => {
-//     selectedCard.addEventListener("change", () => {
-//         console.log("card",selectedCard)
-//     })
-// })
 
 Show.addEventListener("click", () => {
     if(Nav_hide.style.display == "none" || !Nav_hide.style.display) {
@@ -896,15 +897,6 @@ close_modal.addEventListener("click", () => {
         modal.style.display = "flex";
     }
 })
-
-// selectId("button_conclude").addEventListener("click", () => {
-//     // console.log(selectedCard.value);
-//     if(modalAdress.style.display == "none" || !modalAdress.style.display) {
-//         modalAdress.style.display = "flex";
-//     } else {
-//         modalAdress.style.display = "none";
-//     }
-// })
 
 selectId("molding").addEventListener("click", () => {
     modal.style.display = "none";
