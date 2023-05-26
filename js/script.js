@@ -17,3 +17,7 @@ Close.addEventListener("click", () => {
         Nav_hide.style.display = "block";
     }
 })
+
+// document.getElementById("linkJs").addEventListener("click", ()=> {
+//     document.getElementById("linkJs").href = "https://www.instagram.com/cr7cristianoronaldo/";
+//   })

@@ -6,16 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/cardapio-sem-cadastro.css">
 
-    
-<script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
-</script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init("q_l0SspZZGRn3N2-e");
-   })();
-</script>
-
     <title>Cardapio</title>
 </head>
 
@@ -112,7 +102,7 @@
         <div class="cart_info">
             <h2 class="cart_name_product"></h2>
         <h2 class="quantity_cart"></h2>
-        <!-- <img id="removeCart" src="../img/Menu/x.png"> -->
+        <!-- <img class="removeCart" src="../img/Menu/x.png"> -->
         </div>
         <div class="button_quantity_price">
             <h2 class="cart_price_product"></h2>
@@ -151,7 +141,7 @@
                </div>
 
                <div id="buttonAdress">
-                    <button id="finish">Finalizar</button>
+                    <a href="" id="finishLink"><button id="finish">Finalizar</button></a>
                </div>
             </div>
             </div>
@@ -176,29 +166,19 @@
 
                     <div id="paymentGroup">
                         <div class="paymentInput">
-                            <input type="radio" id="elo" name="card" value="Elo">
-                            <label for="elo">Elo</label>
-                        </div>
-    
-                        <div class="paymentInput">
-                            <input type="radio" id="hipercard" name="card" value="Hipercard">
-                            <label for="hipercard">Hipercard</label>
-                        </div>
-    
-                        <div class="paymentInput">
-                            <input type="radio" id="master" name="card" value="Master">
-                            <label for="master">Master</label>
-                        </div>
-    
-                        <div class="paymentInput">
-                            <input type="radio" id="visa" name="card" value="Visa">
-                            <label for="visa">Visa</label>
-                        </div>
-    
-                        <!-- <div class="paymentInput">
-                            <input type="radio" id="pix" name="card">
+                            <input type="radio" id="pix" name="card" value="Pix">
                             <label for="pix">Pix</label>
-                        </div> -->
+                        </div>
+    
+                        <div class="paymentInput">
+                            <input type="radio" id="debito" name="card" value="Débito">
+                            <label for="debito">Débito</label>
+                        </div>
+    
+                        <div class="paymentInput">
+                            <input type="radio" id="credito" name="card" value="Crédito">
+                            <label for="credito">Crédito</label>
+                        </div>
                     </div>
                     <small id="validationRadios" class="text_style"></small> 
                 </div>

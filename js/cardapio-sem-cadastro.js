@@ -13,15 +13,17 @@ let numberOfQuantity = document.getElementById("numberOfQuantity");
 let shopping = document.getElementById("shoppingCart");
 let modalAdress = document.getElementById("templateAdress");
 let adress = document.getElementById("inputAdress");
-let finish = document.getElementById("finish");
+let finish = document.getElementById("finishLink");
 let quantity = 1;
 let cart = [];
 let removeDuplicates = [];
 
-
-
 const select = (element) => document.querySelector(element);
 const selectId = (element) => document.getElementById(element);
+
+// select(".removeCart").onclick = () => {
+//     console.log(select(".removeCart"));
+// }
 
 const productData = (product, item) => {
    product.querySelector(".content .food").innerHTML = item.food_name;
@@ -53,6 +55,17 @@ porcoesIndividuais.map((item) =>{
     console.log("meu produto clicado", myProduct);
 
     // let identificador = cart.findIndex((item) => item.id == item.id)
+
+     // if(identificador > -1) {
+            //     cart[identificador].quantity += quantity;
+            // } else {
+            //    let portion = {
+            //         identificador,
+            //         id: porcoesIndividuais[item].id,
+            //         quantity: quantity,
+            //         price: porcoesIndividuais[item].price,
+            //     }
+            // }
     
     
     selectId("addCart").onclick = (e) => {
@@ -103,24 +116,14 @@ porcoesIndividuais.map((item) =>{
         removeDuplicates.map((item) => {
             let cartProduct = document.querySelector("#clone .cartProduct").cloneNode(true);
 
+            // index
+
             let index = cart.findIndex(i => i.id === item.id);
 
         console.log("index", index);
 
             console.log(cartProduct);
             selectId("cartContent").append(cartProduct);
-
-            // if(identificador > -1) {
-            //     cart[identificador].quantity += quantity;
-            // } else {
-            //    let portion = {
-            //         identificador,
-            //         id: porcoesIndividuais[item].id,
-            //         quantity: quantity,
-            //         price: porcoesIndividuais[item].price,
-            //     }
-            // }
-
 
             cartProduct.querySelector(".cart_info .cart_name_product").innerHTML = item.food_name;
             cartProduct.querySelector(".cart_info .quantity_cart").innerHTML = item.quantity + "un";
@@ -136,12 +139,15 @@ porcoesIndividuais.map((item) =>{
 
             selectId("total").innerHTML = "R$ " + sum + ",00";
 
-            
-            // selectId("removeCart").addEventListener("click", () => {
+            // remover item do carrinho
+
+            // for(i in removeDuplicates) {
+            // select(".removeCart").onclick = () => {
+            //     console.log(select(".removeCart"));
+            //     // removeDuplicates.splice(index[i], 1);
             //     console.log(removeDuplicates);
-            //     // removeDuplicates.splice(0, 1);
-            //     // console.log(removeDuplicates);
-            // })
+            // }
+        // }
 
             
 
@@ -165,7 +171,7 @@ selectId("button_conclude").onclick = () => {
                 let qt = removeDuplicates[i].quantity.toString();
                 let coment = removeDuplicates[i].option;
             
-                let newMessage = name + " / " + qt + "un " + " / " + "comentário: " + coment;
+                let newMessage = name + ", " + qt + "un " + ", " + "Comentário: " + coment;
             
                 messageContent.push(newMessage);
             }
@@ -175,33 +181,17 @@ selectId("button_conclude").onclick = () => {
             finish.onclick =  () => {
                 if(adress.value == "") {
                     selectId("validation").textContent = "O endereço é obrigatório"
+                } if(document.querySelector("input[name='card']:checked").value == "Pix") {
+                    finish.href = "https://wa.me/554792748686?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value + ", " + "Chave pix:";
+                    location.reload();
                 } else {
-                    loading();
                     selectId("validation").textContent = ""
-                    let params = {
-                        name: "Nova compra",
-                        email: "novacompraqdeliciacasasalgados@gmail.com",
-                        message: messageContent + " /" + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
-                    }
-                
-                    
-                const serviceId = "service_kq1pcuf";
-                const templateId = "template_cjs9iem";
-                
-                emailjs.send(serviceId, templateId, params).then(
-                    res =>{
-                        alert("sua compra foi realizada");
-                        hideLoading();
-                        location.reload();
-                    }
-                ).catch( error => {
+                    loading();
+                    finish.href = "https://wa.me/554792748686?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value;
                     hideLoading();
-                    console.log("erro", error);
-                })
                 }
+                location.reload();
                 }
-            
-
         })
     }
 
@@ -338,29 +328,15 @@ selectId("button_conclude").onclick = () => {
             finish.onclick =  () => {
                 if(adress.value == "") {
                     selectId("validation").textContent = "O endereço é obrigatório"
+                }if(document.querySelector("input[name='card']:checked").value == "Pix") {
+                    finish.href = "https://wa.me/554792748686?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value + ", " + "Chave pix:";
+                    location.reload();
                 } else {
-                    loading();
                     selectId("validation").textContent = ""
-                    let params = {
-                        name: "Nova compra",
-                        email: "novacompraqdeliciacasasalgados@gmail.com",
-                        message: messageContent + " /" + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
-                    }
-                
-                    
-                const serviceId = "service_kq1pcuf";
-                const templateId = "template_cjs9iem";
-                
-                emailjs.send(serviceId, templateId, params).then(
-                    res =>{
-                        alert("sua compra foi realizada");
-                        hideLoading();
-                        location.reload();
-                    }
-                ).catch( error => {
+                    loading();
+                    finish.href = "https://wa.me/554792748686?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value;
                     hideLoading();
-                    console.log("erro", error);
-                })
+                    location.reload();
                 }
                 }
             
@@ -501,29 +477,15 @@ selectId("button_conclude").onclick = () => {
             finish.onclick =  () => {
                 if(adress.value == "") {
                     selectId("validation").textContent = "O endereço é obrigatório"
+                } if(document.querySelector("input[name='card']:checked").value == "Pix") {
+                    finish.href = "https://wa.me/554792748686?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value + ", " + "Chave pix:";
+                    location.reload();
                 } else {
-                    loading();
                     selectId("validation").textContent = ""
-                    let params = {
-                        name: "Nova compra",
-                        email: "novacompraqdeliciacasasalgados@gmail.com",
-                        message: messageContent + " /" + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
-                    }
-                
-                    
-                const serviceId = "service_kq1pcuf";
-                const templateId = "template_cjs9iem";
-                
-                emailjs.send(serviceId, templateId, params).then(
-                    res =>{
-                        alert("sua compra foi realizada");
-                        hideLoading();
-                        location.reload();
-                    }
-                ).catch( error => {
+                    loading();
+                    finish.href = "https://wa.me/554792748686?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value;
                     hideLoading();
-                    console.log("erro", error);
-                })
+                    location.reload();
                 }
                 }
             
@@ -664,29 +626,15 @@ selectId("button_conclude").onclick = () => {
             finish.onclick =  () => {
                 if(adress.value == "") {
                     selectId("validation").textContent = "O endereço é obrigatório"
+                } if(document.querySelector("input[name='card']:checked").value == "Pix") {
+                    finish.href = "https://wa.me/554792748686?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value + ", " + "Chave pix:";
+                    location.reload();
                 } else {
-                    loading();
                     selectId("validation").textContent = ""
-                    let params = {
-                        name: "Nova compra",
-                        email: "novacompraqdeliciacasasalgados@gmail.com",
-                        message: messageContent + " /" + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
-                    }
-                
-                    
-                const serviceId = "service_kq1pcuf";
-                const templateId = "template_cjs9iem";
-                
-                emailjs.send(serviceId, templateId, params).then(
-                    res =>{
-                        alert("sua compra foi realizada");
-                        hideLoading();
-                        location.reload();
-                    }
-                ).catch( error => {
+                    loading();
+                    finish.href = "https://wa.me/554792748686?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value;
                     hideLoading();
-                    console.log("erro", error);
-                })
+                    location.reload();
                 }
                 }
             
@@ -828,29 +776,15 @@ selectId("button_conclude").onclick = () => {
             finish.onclick =  () => {
                 if(adress.value == "") {
                     selectId("validation").textContent = "O endereço é obrigatório"
+                } if(document.querySelector("input[name='card']:checked").value == "Pix") {
+                    finish.href = "https://wa.me/554792748686?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value + ", " + "Chave pix:";
+                    location.reload();
                 } else {
-                    loading();
                     selectId("validation").textContent = ""
-                    let params = {
-                        name: "Nova compra",
-                        email: "novacompraqdeliciacasasalgados@gmail.com",
-                        message: messageContent + " /" + " total: R$ " + sum.toString() + ",00  " + "/ " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + " / " +" entrega: " + adress.value
-                    }
-                
-                    
-                const serviceId = "service_kq1pcuf";
-                const templateId = "template_cjs9iem";
-                
-                emailjs.send(serviceId, templateId, params).then(
-                    res =>{
-                        alert("sua compra foi realizada");
-                        hideLoading();
-                        location.reload();
-                    }
-                ).catch( error => {
+                    loading();
+                    finish.href = "https://wa.me/554792748686?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value;
                     hideLoading();
-                    console.log("erro", error);
-                })
+                    location.reload();
                 }
                 }
             
@@ -1056,4 +990,5 @@ function loading() {
     load.style.display = "none";
   }
 
+ 
 
