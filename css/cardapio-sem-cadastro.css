@@ -529,6 +529,13 @@ header {
     cursor: pointer;
 }
 
+#obsPix {
+    margin-top: 5px;
+    font-size: 16px;
+    text-align: justify;
+    display: none;
+}
+
 .cart_input_value {
     margin-top: 3px;
 }
