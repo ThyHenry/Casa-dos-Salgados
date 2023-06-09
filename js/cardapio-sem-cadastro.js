@@ -189,7 +189,7 @@ selectId("button_conclude").onclick = () => {
                     e.preventDefault();
                     selectId("validation").textContent = "O endereço é obrigatório"
                 } else  if(document.querySelector("input[name='card']:checked").value == "Pix") {
-                    finish.href = "https://wa.me/554792507469?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value + ", " + "Chave pix:";
+                    finish.href = "https://wa.me/554792507469?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value;
                     // location.reload();
                 } else {
                     selectId("validation").textContent = ""
@@ -343,7 +343,7 @@ selectId("button_conclude").onclick = () => {
                     e.preventDefault();
                     selectId("validation").textContent = "O endereço é obrigatório"
                 } else if(document.querySelector("input[name='card']:checked").value == "Pix") {
-                    finish.href = "https://wa.me/554792507469?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value + ", " + "Chave pix:";
+                    finish.href = "https://wa.me/554792507469?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value;
                     // location.reload();
                 } else {
                     selectId("validation").textContent = ""
@@ -499,7 +499,7 @@ selectId("button_conclude").onclick = () => {
                     e.preventDefault();
                     selectId("validation").textContent = "O endereço é obrigatório"
                 } else if(document.querySelector("input[name='card']:checked").value == "Pix") {
-                    finish.href = "https://wa.me/554792507469?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value + ", " + "Chave pix:";
+                    finish.href = "https://wa.me/554792507469?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value;
                     // location.reload();
                 } else {
                     selectId("validation").textContent = ""
@@ -655,7 +655,7 @@ selectId("button_conclude").onclick = () => {
                     e.preventDefault();
                     selectId("validation").textContent = "O endereço é obrigatório"
                 } else if(document.querySelector("input[name='card']:checked").value == "Pix") {
-                    finish.href = "https://wa.me/554792507469?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value + ", " + "Chave pix:";
+                    finish.href = "https://wa.me/554792507469?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value;
                     // location.reload();
                 } else {
                     selectId("validation").textContent = ""
@@ -812,7 +812,7 @@ selectId("button_conclude").onclick = () => {
                     e.preventDefault();
                     selectId("validation").textContent = "O endereço é obrigatório"
                 } else if(document.querySelector("input[name='card']:checked").value == "Pix") {
-                    finish.href = "https://wa.me/554792507469?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value + ", " + "Chave pix:";
+                    finish.href = "https://wa.me/554792507469?text="+ "Oi eu gostaria de fazer um pedido de " + messageContent + "," + " total: R$ " + sum.toString() + ",00  " + ", " + "Forma de pagmento: " +    document.querySelector("input[name='card']:checked").value  + ", " + " Entrega: " + adress.value;
                     // location.reload();
                 } else {
                     selectId("validation").textContent = ""
